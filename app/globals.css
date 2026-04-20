@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Blackbox dark theme (default) */
+    --background: 240 10% 3.5%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 8% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 262 83% 68%;            /* violet-500 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 91% 60%;          /* blue-500 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 10%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 262 50% 20%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 14%;
+    --input: 240 6% 14%;
+    --ring: 262 83% 68%;
+
+    --radius: 0.75rem;
+  }
+
+  html, body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Global subtle grid overlay used on home + workspace */
+.bb-grid {
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, hsla(0, 0%, 100%, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, hsla(0, 0%, 100%, 0.035) 1px, transparent 1px);
+}
+
+.bb-grid-fade {
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+}
+
+.bb-aurora {
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklch, hsl(var(--primary)) 20%, transparent) 0%,
+    color-mix(in oklch, hsl(var(--secondary)) 14%, transparent) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
+}
+
+.bb-glass {
+  background: linear-gradient(
+    145deg,
+    hsla(0, 0%, 100%, 0.04) 0%,
+    hsla(0, 0%, 100%, 0.015) 100%
+  );
+  box-shadow:
+    0 10px 30px -10px hsla(0, 0%, 0%, 0.5),
+    inset 0 1px 1px hsla(0, 0%, 100%, 0.08),
+    inset 0 -1px 2px hsla(0, 0%, 0%, 0.6);
+  border: 1px solid hsla(0, 0%, 100%, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.bb-glass-hover:hover {
+  background: linear-gradient(
+    145deg,
+    hsla(0, 0%, 100%, 0.07) 0%,
+    hsla(0, 0%, 100%, 0.025) 100%
+  );
+  border-color: hsla(0, 0%, 100%, 0.15);
+}
+
+.bb-text-glow {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--foreground)) 0%,
+    hsla(0, 0%, 100%, 0.45) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 24px hsla(262, 83%, 68%, 0.25));
+}
+
+.bb-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.bb-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.bb-scroll::-webkit-scrollbar-thumb {
+  background: hsla(0, 0%, 100%, 0.08);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.bb-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsla(0, 0%, 100%, 0.16);
+  background-clip: padding-box;
+}
+
+/* Keep event blocks on the calendar readable when squished */
+.bb-event {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.bb-event:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
